@@ -1,0 +1,45 @@
+<div *ngIf="modifyActionData.actionType === ACTIONS.EDIT">
+    <h1 mat-dialog-title>Update Compensation</h1>
+    <div mat-dialog-content>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>First Name</mat-label>
+                <input matInput disabled [(ngModel)]="modifyActionData.employee.firstName">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input matInput disabled [(ngModel)]="modifyActionData.employee.lastName">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Title</mat-label>
+                <input matInput disabled [(ngModel)]="modifyActionData.employee.position">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Compensation</mat-label>
+                <input matInput [formControl]="compensationFormControl" placeholder="$1,000,000" [(ngModel)]="modifyActionData.employee.compensation">                
+                <mat-error *ngIf="compensationFormControl.hasError('required')">Compensation is <strong>required</strong></mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    <div mat-dialog-actions [attr.align]="'end'">
+        <button mat-button (click)="handleCancel()">Cancel</button>
+        <button mat-flat-button color="primary" (click)="handleSave()">Save</button>
+    </div>
+</div>
+<div *ngIf="modifyActionData.actionType === ACTIONS.DELETE">
+    <h1 mat-dialog-title>Delete Direct Report</h1>
+    <div mat-dialog-content>
+        <p>Permanently delete direct report <span class="report-name">{{ modifyActionData.employee.firstName }} {{ modifyActionData.employee.lastName }}</span>?</p>
+        <p>This action cannot be undone.</p>
+    </div>
+    <div mat-dialog-actions [attr.align]="'end'">
+        <button mat-button (click)="handleCancel()">Cancel</button>
+        <button mat-flat-button color="warn" [mat-dialog-close]="modifyActionData">Delete</button>
+    </div>
+</div>

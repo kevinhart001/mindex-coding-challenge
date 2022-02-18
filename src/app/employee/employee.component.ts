@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 import {Employee} from '../employee';
 
@@ -9,7 +9,14 @@ import {Employee} from '../employee';
 })
 export class EmployeeComponent {
   @Input() employee: Employee;
+  
+  @Output() onEdit = new EventEmitter<number>();
+  @Output() onDelete = new EventEmitter<{ employeeId : number, supervisorEmployeeId: number }>();
 
   constructor() {
+  }
+
+  handleDelete(employeeId: number) {
+    this.onDelete.emit({ employeeId, supervisorEmployeeId: this.employee.id });
   }
 }

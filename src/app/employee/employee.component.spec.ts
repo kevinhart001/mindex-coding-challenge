@@ -51,4 +51,20 @@ describe('EmployeeComponent', () => {
 
     expect(comp).toBeTruthy();
   }));
+
+  describe('handle delete', () => {
+    it('should pass along supervisor\'s employee id', async(() => {
+      const fixture = TestBed.createComponent(EmployeeComponent);
+      const comp = fixture.debugElement.componentInstance;
+      comp.employee = {
+        id: 1 // supervisor id
+      };
+
+      let eventArgs = {};
+      comp.onDelete.subscribe($event => eventArgs = $event);
+      comp.handleDelete(8);
+
+      expect(eventArgs).toEqual({ employeeId: 8, supervisorEmployeeId: 1 });
+    }));
+  });
 });

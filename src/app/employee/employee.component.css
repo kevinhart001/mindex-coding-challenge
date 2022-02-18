@@ -1,0 +1,35 @@
+.employee {
+    border: 0;
+    box-shadow: none;
+}
+
+.mat-card-title * {
+    vertical-align: middle;
+}
+
+.mat-card-title .mat-icon {
+    color: #006abe;
+}
+
+.employee-name {
+    font-weight: bold;
+    margin-left: 0.25em;
+    font-size: 1em;
+}
+
+.mat-card-subtitle {
+    margin-left: 2.15em;
+}
+
+.mat-card-subtitle span + span {
+    margin-left: 1.5em;
+}
+
+.employee-title {
+    font-weight: bold;
+}
+
+.no-direct-reports-info {
+    font-size: 0.9em;
+    font-style: italic;
+}

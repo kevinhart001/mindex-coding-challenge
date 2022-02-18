@@ -1,0 +1,12 @@
+<mat-list-item *ngIf="employee$ | async as employee; else loading" class="direct-report">
+    <span class="report-name">{{ employee.firstName }} {{ employee.lastName }}, {{ employee.position }}</span>
+    <button mat-icon-button (click)="onEdit.emit(employeeId)" title="Edit this direct report" [attr.align]="'end'">
+        <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button color="warn" (click)="onDelete.emit(employeeId)" title="Remove this direct report" [attr.align]="'end'">
+        <mat-icon>delete</mat-icon>
+    </button>
+</mat-list-item>
+<ng-template #loading>
+    <mat-spinner [diameter]="24"></mat-spinner>
+</ng-template>

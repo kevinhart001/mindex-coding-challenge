@@ -1,12 +1,19 @@
 <mat-card class="employee">
   <mat-card-header>
-    <mat-card-title>{{employee.lastName}}, {{employee.firstName}}</mat-card-title>
-    <mat-card-subtitle>{{employee.id}}</mat-card-subtitle>
+    <mat-card-title>
+      <mat-icon>person</mat-icon>
+      <span class="employee-name">{{employee.firstName}} {{employee.lastName}}</span>
+    </mat-card-title>
+    <mat-card-subtitle>
+      <span class="employee-title">{{employee.position}}</span>
+      <span class="employee-id">Employee ID: {{employee.id}}</span>
+    </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <dl>
-      <dt>Job Title</dt>
-      <dd>{{employee.position}}</dd>
-    </dl>
+    <mat-list class="direct-report-list">
+      <div mat-subheader>Direct Reports ({{employee.directReports?.length || 0}})</div>
+      <app-direct-report *ngFor="let employeeId of employee.directReports" [employeeId]="employeeId" (onEdit)="onEdit.emit($event)" (onDelete)="handleDelete($event)"></app-direct-report>
+      <mat-list-item *ngIf="employee.directReports?.length <= 0"><span class="no-direct-reports-info">{{employee.firstName}} has no direct reports!</span></mat-list-item>
+    </mat-list>
   </mat-card-content>
 </mat-card>
